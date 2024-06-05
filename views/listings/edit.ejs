@@ -3,10 +3,20 @@
   <div class="col-8 offset-2">
   <body>
     <h3>Edit your Listing</h3>
-    <form method="POST" action="/listings/<%= listing._id %>?_method=PUT">
+    <form method="POST" 
+    action="/listings/<%= listing._id %>?_method=PUT" 
+    novalidate 
+    class="needs-validation"
+    enctype="multipart/form-data">
       <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control"/>
+        <input name="listing[title]" value="<%= listing.title %>" 
+        type="text" 
+        class="form-control"
+        required/>
+        <div class="invalid-feedback">
+          title required
+        </div>
       </div>
       
       
@@ -14,19 +24,31 @@
         <label for="title" class="form-label">Description</label>
         <textarea name="listing[description]" class="form-control" required>
           <%= listing.description %></textarea>
+          <div class="invalid-feedback">
+            discription required
+          </div>
       </div>
 
 
       <div class="mb-3">
-        <label for="title" class="form-label">Image</label>
-        <input name="listing[image]" value="<%= listing.image %>" type="text" class="form-control"/>
+        <label for="title" class="form-label">Upload new Image</label>
+        <input name="listing[image]" 
+        type="file" 
+        class="form-control"/>
       </div>
      
       <div class="row">
         <div class="mb-3 col-md-4">
       
         <label for="title" class="form-label">Price</label>
-        <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" required/>
+        <input name="listing[price]"
+         value="<%= listing.price %>" 
+         type="number" 
+         class="form-control" 
+         required/>
+         <div class="invalid-feedback">
+          price required
+        </div>
       </div>
       
       
@@ -39,6 +61,9 @@
       type="text"
       class="form-control"
       required/>
+      <div class="invalid-feedback">
+        country required
+      </div>
      </div>
     </div>
 
@@ -51,6 +76,9 @@
         type="text"
         class="form-control"
         required/>
+        <div class="invalid-feedback">
+          location required
+        </div>
       </div>
       
       <button class="btn btn-dark edit-btn mt-3">Edit</button>
