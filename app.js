@@ -21,7 +21,6 @@ const User = require("./models/user.js");
 const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-const { date } = require("joi");
 
 const dburl = process.env.ATLASDB_URL;
 
