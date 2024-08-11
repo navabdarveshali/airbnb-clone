@@ -21,6 +21,7 @@ This project is a clone of the Airbnb website. It replicates the core features a
 - CSS
 - JavaScript
 - EJS
+- Bootstrap for responsive design
 - #### Back-end:
 - Node.js
 - Express.js
