@@ -60,8 +60,9 @@ npm start
 
 5. Feel free to visit webpage https://airbnb-clone-5fnu.onrender.com/listings (if you face security issues open in incognito mode)
 ## ScreenShots
+<img width="1470" alt="Screenshot 2024-08-11 at 10 51 37 PM" src="https://github.com/user-attachments/assets/25e18542-0a34-45ec-bd1a-6790c5d5b0a7">
 ![Untitled design](https://github.com/user-attachments/assets/e03143cb-9995-451b-a25a-2d8f91bf6934)
-
+![Untitled design (1)](https://github.com/user-attachments/assets/08547379-0399-474e-8222-fe987910623e)
 ## Project Structure
 
     
