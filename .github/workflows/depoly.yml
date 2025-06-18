@@ -1,0 +1,41 @@
+name: Node.js CI/CD to EC2
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '23.5.0'  # Or your preferred version
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Copy Files to EC2
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_KEY }}
+        source: "."
+        target: ${{ secrets.EC2_PATH }}
+
+    - name: Run SSH Commands on EC2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd ${{ secrets.EC2_PATH }}
+          npm install
+          pm2 restart all || pm2 start app.js --name my-app
