@@ -22,8 +22,7 @@ const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-// const dburl = process.env.ATLASDB_URL;
-const dburl ="mongodb+srv://navabdarveshali55:zCdUvb6715Mb2FtO@cluster0.j4w4pim.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const dburl = process.env.ATLASDB_URL;
 
 main()
   .then(() => {
@@ -47,7 +46,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const store = MongStore.create({
   mongoUrl: dburl,
   crypto:{
-    secret:"navabdarveshali",
+    secret:process.env.SECRET,
   },
   touchAfter: 24 * 3600,
 });
@@ -58,7 +57,7 @@ store.on("error",() =>{
 
 const sessionOptions = {
   store,
-  secret: "navab darveshali",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
