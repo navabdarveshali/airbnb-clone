@@ -1,7 +1,7 @@
 if(process.env.NODE_ENV != "production"){
   require('dotenv').config();
 }
-console.log(process.env.SECRET);
+// console.log(process.env.SECRET);
 
 
 const express = require("express");
@@ -22,7 +22,8 @@ const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const dburl = process.env.ATLASDB_URL;
+// const dburl = process.env.ATLASDB_URL;
+const dburl ="mongodb+srv://navabdarveshali55:zCdUvb6715Mb2FtO@cluster0.j4w4pim.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 main()
   .then(() => {
@@ -46,7 +47,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 const store = MongStore.create({
   mongoUrl: dburl,
   crypto:{
-    secret: process.env.SECRET,
+    secret:"navabdarveshali",
   },
   touchAfter: 24 * 3600,
 });
@@ -57,7 +58,7 @@ store.on("error",() =>{
 
 const sessionOptions = {
   store,
-  secret: process.env.SECRET,
+  secret: "navab darveshali",
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -67,9 +68,9 @@ const sessionOptions = {
   },
 };
 
-// app.get("/", (req, res) => {
-//   res.send("Hi, I am root");
-// });
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 
 
