@@ -38,4 +38,4 @@ jobs:
         script: |
           cd ${{ secrets.EC2_PATH }}
           npm install
-          pm2 restart all || pm2 start app.js --name my-app
+          pm2 restart all || pm2 start app.js
