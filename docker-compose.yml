@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: majorproject-app
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    depends_on:
+      - mongo
+    networks: 
+      - airbnb-clone
+    restart: unless-stopped
+
+  mongo:
+    image: mongo
+    container_name: majorproject-mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret
+    networks:
+      - airbnb-clone
+    volumes:
+      - mongo-data:/var/lib/docker/volumes/mongo-data/_data
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+
+networks:
+  airbnb-clone:
