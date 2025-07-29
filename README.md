@@ -53,12 +53,12 @@ Create a .env file in the root directory and add the necessary environment varia
 
 4. Run the application:
 ```bash
-npm start
+nodmon app.js
 
 
 ```
 
-5. Feel free to visit webpage https://airbnb-clone-5fnu.onrender.com/listings (if you face security issues open in incognito mode)
+5. Feel free to visit webpage https://airbnb.navabdarveshali.xyz
 
 ## Project Structure
 
