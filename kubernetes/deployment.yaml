@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airbnb-deployment
+  labels:
+    app: airbnb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: airbnb
+  template:
+    metadata:
+      labels:
+        app: airbnb
+    spec:
+      serviceAccountName: airbnb-sa
+      containers:
+        - name: backend
+          image: navabdarveshali/airbnb-clone
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: app-secrets
+          volumeMounts:
+            - name: secrets-store
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+      volumes:
+        - name: secrets-store
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "aws-secrets"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: airbnb-svc
+spec:
+  type: NodePort
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      nodePort: 31100
+
