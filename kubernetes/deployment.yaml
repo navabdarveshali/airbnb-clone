@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: airbnb-deployment
+  namespace: default
   labels:
     app: airbnb
 spec:
@@ -39,6 +40,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: airbnb-svc
+  namespace: default
 spec:
   type: NodePort
   selector:
